@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usetul - Trade smarter, no charts needed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f0f0f0;
+      color: #222;
+    }
+	.container {
+	  max-width: 800px;
+	  margin: 0 auto;
+	  padding: 2rem 1rem; /* เดิม padding: 2rem; */
+	  text-align: center;
+	  position: relative;
+	}
+    .logo {
+      width: 120px;
+      margin: 2rem auto 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #0a3d91;
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    .cta {
+      margin-top: 2rem;
+    }
+    input[type="email"] {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 60%;
+      max-width: 300px;
+      margin-right: 0.5rem;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      background: #0a3d91;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .about {
+      margin-top: 4rem;
+      text-align: left;
+    }
+    .about h2 {
+      font-size: 1.5rem;
+      color: #0a3d91;
+    }
+    .about p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+	.lang-divider {
+	  align-self: center;
+	  color: #0a3d91;
+	  font-size: 0.8rem;
+	  padding: 0 0.25rem;
+	}
+	.lang-toggle {
+	  position: absolute;
+	  top: 1rem;
+	  right: 1rem;
+	  display: flex;
+	  align-items: center;
+	  background: rgba(255,255,255,0.8);
+	  padding: 0.2rem 0.4rem;
+	  border-radius: 6px;
+	  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+	  z-index: 10;
+	}
+	.lang-toggle button {
+	  background: none;
+	  border: none;
+	  font-weight: bold;
+	  font-size: 0.8rem;
+	  color: #0a3d91;
+	  cursor: pointer;
+	  padding: 0.2rem;
+	}
+    #response-message {
+      margin-top: 1rem;
+      color: green;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      p.subtitle {
+        font-size: 1rem;
+      }
+      input[type="email"], button {
+        width: 90%;
+	    max-width: 320px;
+	    margin: 0.5rem 0;
+      }
+      .cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .lang-toggle {
+        right: 0.5rem;
+        top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-toggle">
+  <button onclick="setLang('en')">EN</button>
+  <span class="lang-divider">|</span>
+  <button onclick="setLang('th')">ไทย</button>
+  </div>
+
+  <div class="container">
+    <img src="logo.png" alt="Usetul Logo" class="logo" />
+    <h1 id="title">Trade smarter — no charts, no guesswork.</h1>
+    <p class="subtitle" id="subtitle">Choose your strategy. Get alerted. Trade with confidence.</p>
+
+    <div class="cta">
+      <form id="subscribe-form">
+        <input type="email" name="email" id="email-input" required placeholder="Enter your email to subscribe" />
+        <button type="submit" id="subscribe-button">Subscribe</button>
+      </form>
+      <p id="response-message"></p>
+    </div>
+
+    <div class="about">
+      <h2 id="about-heading">About Usetul</h2>
+      <p id="about-text">
+        Usetul is a trading app for modern investors who want to simplify decision-making.
+        No need to study charts or indicators — we handpick strategies that are backtested and proven to be profitable over time.
+        Just pick the one that fits your style, and receive alerts when it’s time to buy or sell.
+      </p>
+      <h2 id="vision-heading">Our Vision</h2>
+      <p id="vision-text">
+        We believe trading should be accessible, systematic, and stress-free.
+        Even if you’re short on time or don’t know how to read charts,
+        Usetul helps you trade more confidently — and more consistently.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Trade smarter — no charts, no guesswork.",
+        subtitle: "Choose your strategy. Get alerted. Trade with confidence.",
+        email: "Enter your email to subscribe",
+        subscribe: "Subscribe",
+        aboutHeading: "About Usetul",
+        aboutText: `Usetul is a trading app for modern investors who want to simplify decision-making.
+        No need to study charts or indicators — we handpick strategies that are backtested and proven to be profitable over time.
+        Just pick the one that fits your style, and receive alerts when it’s time to buy or sell.`,
+        visionHeading: "Our Vision",
+        visionText: `We believe trading should be accessible, systematic, and stress-free.
+        Even if you’re short on time or don’t know how to read charts,
+        Usetul helps you trade more confidently — and more consistently.`,
+        successMessage: "✅ Thank you for subscribing!",
+        errorMessage: "❌ Something went wrong. Please try again."
+      },
+      th: {
+        title: "ไม่ต้องดูกราฟ ก็ได้กำไร",
+        subtitle: "เลือกกลยุทธ์ รอแจ้งเตือน ซื้อขายอย่างมั่นใจ",
+        email: "กรอกอีเมลเพื่อรับข่าวสาร",
+        subscribe: "Subscribe",
+        aboutHeading: "เกี่ยวกับ Usetul",
+        aboutText: `Usetul คือแอพสำหรับเทรดเดอร์ยุคใหม่ ที่ไม่ต้องการวุ่นวายกับกราฟหรืออินดิเคเตอร์หลายตัว
+        เราคัดสรรกลยุทธ์ที่ได้รับการ backtest แล้วว่าทำกำไรได้จริงในระยะยาว
+        ผู้ใช้เพียงเลือกกลยุทธ์ที่เหมาะกับตนเอง และรับการแจ้งเตือนเมื่อถึงจุดเข้า หรือออกออเดอร์`,
+        visionHeading: "Vision ของเรา",
+        visionText: `ทำให้การเทรดกลายเป็นเรื่องเรียบง่าย มีระบบ และเข้าถึงได้สำหรับทุกคน
+        ไม่ว่าคุณจะมีเวลาน้อยหรือไม่เข้าใจการอ่านกราฟก็สามารถมีโอกาสทำกำไรในตลาดได้อย่างยั่งยืน`,
+        successMessage: "✅ ขอบคุณที่สมัครรับข่าวสารกับเราค่ะ!",
+        errorMessage: "❌ เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('subtitle').textContent = t.subtitle;
+      document.getElementById('email-input').placeholder = t.email;
+      document.getElementById('subscribe-button').textContent = t.subscribe;
+      document.getElementById('about-heading').textContent = t.aboutHeading;
+      document.getElementById('about-text').textContent = t.aboutText;
+      document.getElementById('vision-heading').textContent = t.visionHeading;
+      document.getElementById('vision-text').textContent = t.visionText;
+      document.getElementById('response-message').textContent = '';
+    }
+
+    const form = document.getElementById("subscribe-form");
+    const responseMsg = document.getElementById("response-message");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const response = await fetch("https://usebasin.com/f/104af67c58da", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
+
+      const t = translations[currentLang];
+      if (response.ok) {
+        responseMsg.textContent = t.successMessage;
+        form.reset();
+      } else {
+        responseMsg.textContent = t.errorMessage;
+      }
+    });
+
+    // Set default language
+    setLang('en');
+  </script>
+</body>
+</html>
